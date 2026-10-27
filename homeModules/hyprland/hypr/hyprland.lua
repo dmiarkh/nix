@@ -1,0 +1,11 @@
+require("modules/animations")
+require("modules/autostart")
+require("modules/general")
+require("modules/input")
+require("modules/keybinds")
+require("modules/layer-rules")
+require("modules/monitors")
+require("modules/permissions")
+require("modules/window-rules")
+require("modules/workspace-rules")
+
