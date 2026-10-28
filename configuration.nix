@@ -223,9 +223,10 @@
       fd
       yt-dlp
       imv
+      gnome-epub-thumbnailer
       eza
     ];
   };
 
-  system.stateVersion = "26.05"; # Did you read the comment?
+  system.stateVersion = "26.05";
 }

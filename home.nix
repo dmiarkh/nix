@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   imports = [
     ./homeModules/noctalia
@@ -102,7 +107,143 @@
       '';
     };
     vesktop.enable = true;
-    yazi.enable = true;
+    yazi = {
+      enable = true;
+
+      plugins = {
+        smart-paste = pkgs.yaziPlugins.smart-paste;
+        mediainfo = pkgs.yaziPlugins.mediainfo;
+        epub-preview = pkgs.fetchFromGitHub {
+          owner = "kirasok";
+          repo = "epub-preview.yazi";
+          rev = "main";
+          hash = "sha256-QP92Uk7hDkZduwRSMNXMOygCUeBlXrL7JnKdK1wIRsQ=";
+        };
+      };
+      extraPackages = [ pkgs.mediainfo ];
+      keymap = {
+        mgr.prepend_keymap = [
+          {
+            on = "p";
+            run = "plugin smart-paste";
+            desc = "Paste into the hovered directory or CWD";
+          }
+          {
+            on = "K";
+            run = "seek -10";
+            desc = "Seek up 10 units in the preview";
+          }
+          {
+            on = "J";
+            run = "seek 10";
+            desc = "Seek down 10 units in the preview";
+          }
+        ];
+        mgr.append_keymap = [
+          {
+            on = [
+              "g"
+              "p"
+            ];
+            run = "cd ~/dev";
+            desc = "Go to the projects directory";
+          }
+          {
+            on = [
+              "g"
+              "m"
+            ];
+            run = "cd ~/Downloads/Movies/";
+            # run = "cd ~/media/Disk/Movies";
+            desc = "Go to the movies directory";
+          }
+          {
+            on = [
+              "g"
+              "r"
+            ];
+            run = ''shell -- ya emit cd "$(git rev-parse --show-toplevel)"'';
+            desc = "Go to the git root";
+          }
+        ];
+      };
+      settings = {
+        mgr = {
+          sort_by = "natural";
+          sort_translit = true;
+          linemode = "size";
+        };
+        tasks.image_alloc = 1073741824;
+        plugin = {
+          prepend_preloaders = [
+            {
+              mime = "image/*";
+              run = "mediainfo";
+            }
+            {
+              mime = "video/*";
+              run = "mediainfo";
+            }
+            {
+              mime = "audio/*";
+              run = "mediainfo";
+            }
+            {
+              mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}";
+              run = "mediainfo";
+            }
+            {
+              url = "*.{ai,eps,ait}";
+              run = "mediainfo";
+            }
+          ];
+          prepend_previewers = [
+            {
+              mime = "image/*";
+              run = "mediainfo";
+            }
+            {
+              mime = "video/*";
+              run = "mediainfo";
+            }
+            {
+              mime = "audio/*";
+              run = "mediainfo";
+            }
+            {
+              mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}";
+              run = "mediainfo";
+            }
+            {
+              url = "*.{ai,eps,ait}";
+              run = "mediainfo";
+            }
+            {
+              mime = "application/epub+zip";
+              run = "epub-preview";
+            }
+          ];
+        };
+        opener.set-wallpaper = [
+          {
+            run = "noctalia msg wallpaper-set %s";
+            for = "linux";
+            desc = "Set as wallpaper";
+          }
+        ];
+        open.prepend_rules = [
+          {
+            mime = "image/*";
+            use = [
+              "open"
+              "set-wallpaper"
+              "reveal"
+            ];
+          }
+        ];
+      };
+    };
+
     zathura.enable = true;
     zed-editor.enable = true;
     zsh = {
@@ -188,6 +329,14 @@
     };
   };
 
+  xdg.configFile."yazi/theme.toml".source = lib.mkForce (
+    pkgs.runCommand "yazi-theme-transparent" { } ''
+      substitute \
+        ${config.catppuccin.sources.yazi}/${config.catppuccin.yazi.flavor}/catppuccin-${config.catppuccin.yazi.flavor}-${config.catppuccin.yazi.accent}.toml \
+        $out \
+        --replace-fail 'overall = { bg = "#1e1e2e" }' 'overall = { bg = "reset" }'
+    ''
+  );
   # Same as system.stateVersion in configuration.nix
   # Do not change
   home.stateVersion = "26.05";
