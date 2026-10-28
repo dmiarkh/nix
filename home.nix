@@ -79,7 +79,36 @@
       enableZshIntegration = false;
     };
     fzf.enable = true;
-    ghostty.enable = true;
+    ghostty = {
+      enable = true;
+      settings = {
+        font-family = "CommitMono";
+        font-style = "Bold";
+        font-style-italic = "Bold Italic";
+        font-size = 11;
+        font-feature = [
+          "ss01"
+          "ss02"
+        ];
+
+        cursor-style = "block";
+        cursor-style-blink = false;
+        cursor-text = "black";
+
+        background-opacity = 0.9;
+        background-opacity-cells = true;
+
+        window-padding-x = 10;
+        resize-overlay = "never";
+        confirm-close-surface = false;
+        bell-features = "no-title";
+        shell-integration-features = "no-cursor";
+
+        quit-after-last-window-closed = true;
+        quit-after-last-window-closed-delay = "5m";
+
+      };
+    };
     imv.enable = true;
     obs-studio.enable = true;
     starship.enable = true;
