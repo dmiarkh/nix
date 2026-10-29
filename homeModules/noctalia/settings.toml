@@ -69,7 +69,7 @@ widget_order = [ "lockscreen-login-box@FALLBACK", "lockscreen-login-box@HDMI-A-1
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@FALLBACK".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -97,7 +97,7 @@ widget_order = [ "lockscreen-login-box@FALLBACK", "lockscreen-login-box@HDMI-A-1
     type = "login_box"
 
         [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
-        background_color = "surface_variant"
+        background_color = "surface_container"
         background_opacity = 0.88
         background_radius = 12.0
         center_password_text = false
@@ -165,6 +165,47 @@ launch_apps_as_systemd_services = true
     [shell.session]
     grid = true
 
+        [[shell.session.actions]]
+        action = "lock"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "1"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "logout"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "2"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "lock_and_suspend"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "3"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "reboot"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "4"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "reboot_uefi"
+        countdown_seconds = 0.0
+        enabled = true
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "shutdown"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "5"
+        variant = "destructive"
+
     [shell.window_switcher]
     mru = true
 
@@ -174,8 +215,6 @@ enabled = false
 [theme]
 builtin = "Ayu"
 community_palette = "Catppuccin Mocha Lavender"
-enable_builtin_templates = false
-enable_community_templates = false
 mode = "dark"
 source = "community"
 wallpaper_scheme = "m3-content"
@@ -237,4 +276,4 @@ capsule_opacity = 0.0
 capsule_radius = 8
 font_weight = 700
 inactive_pill_size = 1.3
-occupied_color = "surface_variant"
+occupied_color = "surface_container"
