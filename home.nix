@@ -96,17 +96,13 @@
         cursor-text = "black";
 
         background-opacity = 0.9;
-        background-opacity-cells = true;
+        # background-opacity-cells = true;
 
         window-padding-x = 10;
         resize-overlay = "never";
         confirm-close-surface = false;
         bell-features = "no-title";
         shell-integration-features = "no-cursor";
-
-        quit-after-last-window-closed = true;
-        quit-after-last-window-closed-delay = "5m";
-
       };
     };
     imv.enable = true;

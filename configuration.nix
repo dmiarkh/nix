@@ -109,22 +109,6 @@
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [
-      bash-language-server
-      emmet-language-server
-      gopls
-      vscode-langservers-extracted # css, html, json, eslint
-      lua-language-server
-      stylua
-      tailwindcss-language-server
-      typescript-language-server
-      nil
-
-      black
-      isort
-      prettier
-      prettierd
-      shellcheck
-      shfmt
     ];
   };
 
@@ -148,6 +132,13 @@
       withUWSM = true;
       xwayland.enable = true;
     };
+    gamescope.enable = true;
+    gamemode.enable = true;
+    steam = {
+      enable = true;
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
+    };
+    google-chrome.enable = true;
     nh = {
       enable = true;
       flake = "/home/dima/nix";
@@ -192,23 +183,41 @@
       NIXOS_OZONE_WL = "1";
     };
     systemPackages = with pkgs; [
+      age
+      alacritty
       bitwarden-desktop
+      bluetui
       bottom
       brave-origin
+      bruno
       calc
       ddcutil
+      eza
       fastfetch
+      fd
       firefox-devedition
       fzf
       fzf-zsh-plugin
       gcc
       ghostty
+      gimp
+      gnome-epub-thumbnailer
       gnumake
+      (heroic.override {
+        extraPkgs =
+          pkgs': with pkgs'; [
+            gamescope
+            gamemode
+          ];
+      })
+      imv
       kdePackages.dolphin
       mailspring
       nemo
       nodejs
       playerctl
+      qbittorrent
+      ripgrep
       telegram-desktop
       tree-sitter
       unzip
@@ -216,15 +225,29 @@
       vivaldi
       vivaldi-ffmpeg-codecs
       vlc
+      yt-dlp
       zed-editor
       zsh-fzf-tab
       zsh-syntax-highlighting
-      ripgrep
-      fd
-      yt-dlp
-      imv
-      gnome-epub-thumbnailer
-      eza
+
+      # nvim lsp
+      bash-language-server
+      emmet-language-server
+      gopls
+      lua-language-server
+      nil
+      stylua
+      tailwindcss-language-server
+      typescript-language-server
+      vscode-langservers-extracted # css, html, json, eslint
+
+      # nvim tools
+      black
+      isort
+      prettier
+      prettierd
+      shellcheck
+      shfmt
     ];
   };
 
