@@ -38,6 +38,7 @@
       modesetting.enable = true;
       nvidiaSettings = true;
     };
+    keyboard.qmk.enable = true;
     i2c.enable = true;
   };
 
@@ -56,6 +57,7 @@
       };
       pulse.enable = true;
     };
+    udisks2.enable = true;
     # 2972 - JA11
     udev.extraRules = ''
       ATTRS{idVendor}=="2972", ATTRS{idProduct}=="0102", MODE="0660", GROUP="users"
@@ -189,6 +191,8 @@
       bluetui
       bottom
       brave-origin
+      qmk
+      dos2unix # qmk dependency
       bruno
       calc
       ddcutil

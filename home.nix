@@ -354,6 +354,10 @@
     };
   };
 
+  services = {
+    udiskie.enable = true;
+  };
+
   xdg.configFile."yazi/theme.toml".source = lib.mkForce (
     pkgs.runCommand "yazi-theme-transparent" { } ''
       substitute \
