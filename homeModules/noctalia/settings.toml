@@ -234,7 +234,7 @@ directory_light = "/home/dima/Pictures/Wallpapers"
     path = "/home/dima/Pictures/Wallpapers/pepe.png"
 
     [[wallpaper.favorite]]
-    community_palette = "ADW"
+    community_palette = "Catppuccin Mocha Lavender"
     palette_source = "community"
     path = "/home/dima/Pictures/Wallpapers/pepe.png"
     theme_mode = "dark"
@@ -252,6 +252,9 @@ right = "exec ghostty -e auto-cpufreq --stats"
 [widget.clock]
 format = "{:%A, %e %b, %R}"
 
+[widget.input_volume]
+peek = true
+
 [widget.media]
 art_size = 20
 capsule = false
@@ -263,7 +266,8 @@ show_progress = true
 title_scroll = "always"
 
 [widget.network]
-show_label = false
+peek = true
+show_label = true
 
 [widget.widget]
 type = "thepunkoff/pomodoro:widget"
