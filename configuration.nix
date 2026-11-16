@@ -93,6 +93,7 @@
       "nix-command"
       "flakes"
     ];
+    max-jobs = 8;
     auto-optimise-store = true;
     extra-substituters = [ "https://noctalia.cachix.org" ];
     extra-trusted-public-keys = [
