@@ -117,6 +117,7 @@
 
   fonts = {
     packages = with pkgs; [
+      corefonts
       commit-mono
     ];
 
@@ -187,6 +188,11 @@
     };
     systemPackages = with pkgs; [
       age
+      protonplus
+      lutris
+      ncdu
+      libreoffice
+      tlrc
       alacritty
       bitwarden-desktop
       bluetui
